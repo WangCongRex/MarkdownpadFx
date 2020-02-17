@@ -1,0 +1,67 @@
+.link{
+	-fx-fill: blue;
+}
+
+.image{
+	-fx-fill: #ff00ff;
+}
+
+.ul{
+	-fx-fill: orange;
+}
+
+.ol{
+	-fx-fill: #bbbb00;
+}
+
+.quote{
+	-fx-fill: #aaaaaa;
+}
+
+.italics{
+	-fx-font-style: italic;
+}
+
+.bolds{
+	-fx-font-weight: bold;
+}
+
+.italicsbolds{
+	-fx-font-style: italic;
+	-fx-font-weight: bold;
+}
+
+.code{
+	-fx-fill: #00aa00;
+}
+
+.h1{
+	-fx-fill: #aa0000;
+	-fx-font-size: 2.5em;
+	-fx-font-weight: bold;
+}
+.h2{
+	-fx-fill: #aa0000;
+	-fx-font-size: 2.25em;
+	-fx-font-weight: bold;
+}
+.h3{
+	-fx-fill: #aa0000;
+	-fx-font-size: 2em;
+	-fx-font-weight: bold;
+}
+.h4{
+	-fx-fill: #aa0000;
+	-fx-font-size: 1.75em;
+	-fx-font-weight: bold;
+}
+.h5{
+	-fx-fill: #aa0000;
+	-fx-font-size: 1.5em;
+	-fx-font-weight: bold;
+}
+.h6{
+	-fx-fill: #aa0000;
+	-fx-font-size: 1.25em;
+	-fx-font-weight: bold;
+}

@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+<?import org.controlsfx.control.HiddenSidesPane?>
+
+<AnchorPane fx:id="rootNode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.WangcongRex.controller.Controller">
+	<children>
+		<MenuBar prefHeight="25.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<menus>
+				<Menu mnemonicParsing="false" text="%file">
+					<items>
+						<MenuItem fx:id="MenuNew" mnemonicParsing="false" onAction="#doNew" text="%file.new">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+							<graphic>
+								<FontAwesomeIcon iconName="FILE_TEXT_ALT" />
+							</graphic>
+						</MenuItem>
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="MenuOpen" mnemonicParsing="false" onAction="#doOpen" text="%file.open">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+							<graphic>
+								<FontAwesomeIcon iconName="FOLDER_OPEN_ALT" />
+							</graphic>
+						</MenuItem>
+						<Menu fx:id="MenuOpenRecent" mnemonicParsing="false" text="%file.openRecent" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="MenuSave" mnemonicParsing="false" onAction="#doSave" text="%file.save">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+							<graphic>
+								<FontAwesomeIcon iconName="SAVE" />
+							</graphic>
+						</MenuItem>
+						<MenuItem fx:id="MenuSaveAs" mnemonicParsing="false" onAction="#doSaveAs" text="%file.saveas">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+                  <MenuItem fx:id="MenuExport" mnemonicParsing="false" onAction="#doExport" text="%file.export">
+                     <graphic>
+                        <FontAwesomeIcon iconName="SIGN_OUT" />
+                     </graphic>
+                  </MenuItem>
+						<SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="MenuSetting" mnemonicParsing="false" onAction="#doSetting" text="%file.setting">
+                     <graphic>
+                        <FontAwesomeIcon iconName="COG" />
+                     </graphic>
+                  </MenuItem>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="MenuQuit" mnemonicParsing="false" onAction="#doQuit" text="%file.quit">
+							<graphic>
+								<FontAwesomeIcon iconName="CLOSE" />
+							</graphic>
+						</MenuItem>
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="%edit">
+					<items>
+						<MenuItem fx:id="MenuUndo" mnemonicParsing="false" onAction="#doUndo" text="%edit.undo">
+							<graphic>
+								<FontAwesomeIcon iconName="UNDO" />
+							</graphic>
+						</MenuItem>
+						<MenuItem mnemonicParsing="false" onAction="#doRedo" text="%edit.redo">
+							<graphic>
+								<FontAwesomeIcon iconName="REPEAT" />
+							</graphic>
+						</MenuItem>
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="MenuCopy" mnemonicParsing="false" onAction="#doCopy" text="%edit.copy">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+							<graphic>
+								<FontAwesomeIcon iconName="COPY" />
+							</graphic>
+						</MenuItem>
+						<MenuItem fx:id="MenuCut" mnemonicParsing="false" onAction="#doCut" text="%edit.cut">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+							<graphic>
+								<FontAwesomeIcon iconName="CUT" />
+							</graphic>
+						</MenuItem>
+						<MenuItem fx:id="MenuPaste" mnemonicParsing="false" onAction="#doPaste" text="%edit.paste">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+							<graphic>
+								<FontAwesomeIcon iconName="PASTE" />
+							</graphic>
+						</MenuItem>
+						<MenuItem fx:id="MenuDelete" mnemonicParsing="false" onAction="#doDelete" text="%edit.delete" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="MenuSelectAll" mnemonicParsing="false" onAction="#doSelectAll" text="%edit.selectall">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+						<MenuItem fx:id="MentSelectNone" mnemonicParsing="false" onAction="#doSelectNone" text="%edit.selectnone" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="MenuShowFind" mnemonicParsing="false" onAction="#doShowFind" text="%edit.find">
+							<graphic>
+								<FontAwesomeIcon iconName="BINOCULARS" />
+							</graphic>
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+						<MenuItem fx:id="MenuShowReplace" mnemonicParsing="false" onAction="#doShowReplace" text="%edit.replace">
+							<graphic>
+								<FontAwesomeIcon iconName="RETWEET" />
+							</graphic>
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+						</MenuItem>
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="%font">
+					<items>
+						<MenuItem fx:id="MenuBold" mnemonicParsing="false" onAction="#doBlod" text="%font.bold">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="B" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+							<graphic>
+								<FontAwesomeIcon iconName="BOLD" />
+							</graphic>
+						</MenuItem>
+						<MenuItem fx:id="MenuItalic" mnemonicParsing="false" onAction="#doItalic" text="%font.italic">
+							<accelerator>
+								<KeyCodeCombination alt="UP" code="I" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+							</accelerator>
+							<graphic>
+								<FontAwesomeIcon iconName="ITALIC" />
+							</graphic>
+						</MenuItem>
+						<MenuItem fx:id="MenuDeleteLine" mnemonicParsing="false" onAction="#doDeleteLine" text="%font.deleteline" />
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="%insert">
+					<items>
+						<Menu mnemonicParsing="false" text="%insert.head">
+							<items>
+								<MenuItem fx:id="MenuH1" mnemonicParsing="false" onAction="#doH1" text="H1" />
+								<MenuItem fx:id="MenuH2" mnemonicParsing="false" onAction="#doH2" text="H2" />
+								<MenuItem fx:id="MenuH3" mnemonicParsing="false" onAction="#doH3" text="H3" />
+								<MenuItem fx:id="MenuH4" mnemonicParsing="false" onAction="#doH4" text="H4" />
+								<MenuItem fx:id="MenuH5" mnemonicParsing="false" onAction="#doH5" text="H5" />
+								<MenuItem fx:id="MenuH6" mnemonicParsing="false" onAction="#doH6" text="H6" />
+							</items>
+							<graphic>
+								<FontAwesomeIcon iconName="HEADER" />
+							</graphic>
+						</Menu>
+						<MenuItem fx:id="MenuQuote" mnemonicParsing="false" onAction="#doQuote" text="%insert.quote">
+							<graphic>
+								<FontAwesomeIcon iconName="QUOTE_LEFT" />
+							</graphic>
+						</MenuItem>
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="MenuInlineCode" mnemonicParsing="false" onAction="#doCode" text="%insert.inlinecode">
+							<graphic>
+								<FontAwesomeIcon iconName="CODE" />
+							</graphic>
+						</MenuItem>
+						<MenuItem fx:id="MenuCodeBlock" mnemonicParsing="false" onAction="#doCodeBlock" text="%insert.codeblock">
+							<graphic>
+								<FontAwesomeIcon iconName="FILE_CODE_ALT" />
+							</graphic>
+						</MenuItem>
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="MenuOL" mnemonicParsing="false" onAction="#doOl" text="%insert.orderedlist">
+							<graphic>
+								<FontAwesomeIcon iconName="LIST_OL" />
+							</graphic>
+						</MenuItem>
+						<MenuItem fx:id="MenuUL" mnemonicParsing="false" onAction="#doUl" text="%insert.unorderedlist">
+							<graphic>
+								<FontAwesomeIcon iconName="LIST_UL" />
+							</graphic>
+						</MenuItem>
+						<MenuItem fx:id="MenuSep" mnemonicParsing="false" onAction="#doSeparate" text="%insert.separator">
+							<graphic>
+								<FontAwesomeIcon iconName="MINUS" />
+							</graphic>
+						</MenuItem>
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="MenuImage" mnemonicParsing="false" onAction="#doImage" text="%insert.image">
+							<graphic>
+								<FontAwesomeIcon iconName="PICTURE_ALT" />
+							</graphic>
+						</MenuItem>
+						<MenuItem fx:id="MenuLink" mnemonicParsing="false" onAction="#doLink" text="%insert.link">
+							<graphic>
+								<FontAwesomeIcon iconName="LINK" />
+							</graphic>
+						</MenuItem>
+						<MenuItem fx:id="MenuTable" mnemonicParsing="false" onAction="#doTable" text="%insert.table">
+							<graphic>
+								<FontAwesomeIcon iconName="TABLE" />
+							</graphic>
+						</MenuItem>
+					</items>
+				</Menu>
+				<Menu mnemonicParsing="false" text="%help">
+					<items>
+						<MenuItem fx:id="MenuHelp" mnemonicParsing="false" onAction="#doHelp" text="%help">
+							<graphic>
+								<FontAwesomeIcon iconName="BOOK" />
+							</graphic>
+						</MenuItem>
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="MenuAbout" mnemonicParsing="false" onAction="#doAbout" text="%help.about">
+							<graphic>
+								<FontAwesomeIcon iconName="INFO_CIRCLE" />
+							</graphic>
+						</MenuItem>
+					</items>
+				</Menu>
+			</menus>
+		</MenuBar>
+		<ToolBar minHeight="40.0" prefHeight="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+			<items>
+				<HBox>
+					<children>
+						<Button fx:id="BNew" mnemonicParsing="false" onAction="#doNew" styleClass="first">
+							<graphic>
+								<FontAwesomeIcon iconName="FILE_TEXT_ALT" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%file.new" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BOpen" mnemonicParsing="false" onAction="#doOpen" styleClass="middle">
+							<graphic>
+								<FontAwesomeIcon iconName="FOLDER_OPEN_ALT" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%file.open" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BSave" mnemonicParsing="false" onAction="#doSave" styleClass="last">
+							<graphic>
+								<FontAwesomeIcon iconName="SAVE" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%file.save" />
+							</tooltip>
+						</Button>
+					</children>
+				</HBox>
+				<Separator orientation="VERTICAL" />
+				<HBox layoutX="10.0" layoutY="10.0">
+					<children>
+						<Button fx:id="BCopy" mnemonicParsing="false" onAction="#doCopy" styleClass="first">
+							<graphic>
+								<FontAwesomeIcon iconName="COPY" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%edit.copy" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BCut" mnemonicParsing="false" onAction="#doCut" styleClass="middle">
+							<graphic>
+								<FontAwesomeIcon iconName="CUT" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%edit.cut" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BPaste" mnemonicParsing="false" onAction="#doPaste" styleClass="last">
+							<graphic>
+								<FontAwesomeIcon iconName="PASTE" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%edit.paste" />
+							</tooltip>
+						</Button>
+					</children>
+				</HBox>
+				<Separator layoutX="14.0" layoutY="10.0" orientation="VERTICAL" />
+				<HBox layoutX="10.0" layoutY="10.0">
+					<children>
+						<Button fx:id="BUndo" mnemonicParsing="false" onAction="#doUndo" styleClass="first">
+							<graphic>
+								<FontAwesomeIcon iconName="UNDO" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%edit.undo" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BRedo" mnemonicParsing="false" onAction="#doRedo" styleClass="last">
+							<graphic>
+								<FontAwesomeIcon iconName="REPEAT" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%edit.redo" />
+							</tooltip>
+						</Button>
+					</children>
+				</HBox>
+				<Separator layoutX="28.0" layoutY="10.0" orientation="VERTICAL" />
+				<HBox layoutX="24.0" layoutY="10.0">
+					<children>
+						<Button fx:id="BBlod" mnemonicParsing="false" onAction="#doBlod" styleClass="first">
+							<graphic>
+								<FontAwesomeIcon iconName="BOLD" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%font.bold" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BItalic" mnemonicParsing="false" onAction="#doItalic" styleClass="last">
+							<graphic>
+								<FontAwesomeIcon iconName="ITALIC" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%font.italic" />
+							</tooltip>
+						</Button>
+					</children>
+				</HBox>
+				<Separator layoutX="14.0" layoutY="10.0" orientation="VERTICAL" />
+				<HBox layoutX="52.0" layoutY="10.0">
+					<children>
+						<MenuButton mnemonicParsing="false" styleClass="first">
+							<graphic>
+								<FontAwesomeIcon iconName="HEADER" size="1em" />
+							</graphic>
+							<items>
+								<MenuItem fx:id="BH1" mnemonicParsing="false" onAction="#doH1" text="H1" />
+								<MenuItem fx:id="BH2" mnemonicParsing="false" onAction="#doH2" text="H2" />
+								<MenuItem fx:id="BH3" mnemonicParsing="false" onAction="#doH3" text="H3" />
+								<MenuItem fx:id="BH4" mnemonicParsing="false" onAction="#doH4" text="H4" />
+								<MenuItem fx:id="BH5" mnemonicParsing="false" onAction="#doH5" text="H5" />
+								<MenuItem fx:id="BH6" mnemonicParsing="false" onAction="#doH6" text="H6" />
+							</items>
+							<tooltip>
+								<Tooltip text="%insert.head" />
+							</tooltip>
+						</MenuButton>
+						<Button fx:id="BQuote" mnemonicParsing="false" onAction="#doQuote" styleClass="middle">
+							<graphic>
+								<FontAwesomeIcon iconName="QUOTE_LEFT" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%insert.quote" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BUl" mnemonicParsing="false" onAction="#doUl" styleClass="middle">
+							<graphic>
+								<FontAwesomeIcon iconName="LIST_UL" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%insert.unorderedlist" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BOl" mnemonicParsing="false" onAction="#doOl" styleClass="middle">
+							<graphic>
+								<FontAwesomeIcon iconName="LIST_OL" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%insert.orderedlist" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BCode" mnemonicParsing="false" onAction="#doCode" styleClass="middle">
+							<graphic>
+								<FontAwesomeIcon iconName="CODE" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%insert.inlinecode" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BCodeBlock" mnemonicParsing="false" onAction="#doCodeBlock" styleClass="middle">
+							<graphic>
+								<FontAwesomeIcon iconName="FILE_CODE_ALT" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%insert.codeblock" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BSeparator" mnemonicParsing="false" onAction="#doSeparate" styleClass="last">
+							<graphic>
+								<FontAwesomeIcon iconName="MINUS" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%insert.separator" />
+							</tooltip>
+						</Button>
+					</children>
+				</HBox>
+				<Separator layoutX="56.0" layoutY="10.0" orientation="VERTICAL" />
+				<HBox layoutX="38.0" layoutY="10.0">
+					<children>
+						<Button fx:id="BImage" mnemonicParsing="false" onAction="#doImage" styleClass="first">
+							<graphic>
+								<FontAwesomeIcon iconName="PICTURE_ALT" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%insert.image" />
+							</tooltip>
+						</Button>
+						<Button fx:id="BLink" mnemonicParsing="false" onAction="#doLink" styleClass="middle">
+							<graphic>
+								<FontAwesomeIcon iconName="LINK" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%insert.link" />
+							</tooltip>
+						</Button>
+						<Button fx:id="Btable" mnemonicParsing="false" onAction="#doTable" styleClass="last">
+							<graphic>
+								<FontAwesomeIcon iconName="TABLE" size="1em" />
+							</graphic>
+							<tooltip>
+								<Tooltip text="%insert.table" />
+							</tooltip>
+						</Button>
+					</children>
+				</HBox>
+				<Label fx:id="LStatus" visible="false">
+					<contextMenu>
+						<ContextMenu fx:id="contextMenu">
+							<items>
+								<MenuItem fx:id="MenuUndo1" mnemonicParsing="false" onAction="#doUndo" text="%edit.undo">
+									<graphic>
+										<FontAwesomeIcon iconName="UNDO" />
+									</graphic>
+								</MenuItem>
+								<MenuItem mnemonicParsing="false" onAction="#doRedo" text="%edit.redo">
+									<graphic>
+										<FontAwesomeIcon iconName="REPEAT" />
+									</graphic>
+								</MenuItem>
+								<SeparatorMenuItem mnemonicParsing="false" />
+								<MenuItem fx:id="MenuCopy1" mnemonicParsing="false" onAction="#doCopy" text="%edit.copy">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+									<graphic>
+										<FontAwesomeIcon iconName="COPY" />
+									</graphic>
+								</MenuItem>
+								<MenuItem fx:id="MenuCut1" mnemonicParsing="false" onAction="#doCut" text="%edit.cut">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+									<graphic>
+										<FontAwesomeIcon iconName="CUT" />
+									</graphic>
+								</MenuItem>
+								<MenuItem fx:id="MenuPaste1" mnemonicParsing="false" onAction="#doPaste" text="%edit.paste">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+									<graphic>
+										<FontAwesomeIcon iconName="PASTE" />
+									</graphic>
+								</MenuItem>
+								<MenuItem fx:id="MenuDelete1" mnemonicParsing="false" onAction="#doDelete" text="%edit.delete" />
+								<SeparatorMenuItem mnemonicParsing="false" />
+								<MenuItem fx:id="MenuSelectAll1" mnemonicParsing="false" onAction="#doSelectAll" text="%edit.selectall">
+									<accelerator>
+										<KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+									</accelerator>
+								</MenuItem>
+								<MenuItem fx:id="MentSelectNone1" mnemonicParsing="false" onAction="#doSelectNone" text="%edit.selectnone" />
+							</items>
+						</ContextMenu>
+					</contextMenu>
+				</Label>
+			</items>
+		</ToolBar>
+		<SplitPane dividerPositions="0.5" layoutY="65.0" prefHeight="190.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+			<items>
+				<AnchorPane prefHeight="200.0" prefWidth="200.0">
+					<HiddenSidesPane fx:id="codeAreaPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+						<bottom>
+							<AnchorPane fx:id="FNRPane" style="-fx-background-color: #eeeeee; -fx-border-color: #555555; -fx-border-style: solid;">
+								<children>
+									<VBox>
+										<children>
+											<HBox alignment="CENTER_LEFT">
+												<children>
+													<FontAwesomeIcon iconName="BINOCULARS" size="2em" />
+													<TextField fx:id="findText" styleClass="first">
+														<HBox.margin>
+															<Insets left="5.0" />
+														</HBox.margin>
+													</TextField>
+													<Button fx:id="findLastButton" mnemonicParsing="false" onAction="#doFindLast" styleClass="middle">
+														<graphic>
+															<FontAwesomeIcon iconName="CHEVRON_UP" />
+														</graphic>
+														<tooltip>
+															<Tooltip text="%find.last" />
+														</tooltip>
+													</Button>
+													<Button fx:id="findNextButton" mnemonicParsing="false" onAction="#doFindNext" styleClass="last">
+														<graphic>
+															<FontAwesomeIcon iconName="CHEVRON_DOWN" />
+														</graphic>
+														<tooltip>
+															<Tooltip text="%find.next" />
+														</tooltip>
+													</Button>
+													<ToggleButton fx:id="capCaseSwitch" mnemonicParsing="false" text="A a">
+														<tooltip>
+															<Tooltip text="%find.case" />
+														</tooltip>
+													</ToggleButton>
+													<ToggleButton fx:id="regxSwitch" mnemonicParsing="false" text=".*">
+														<tooltip>
+															<Tooltip text="%find.regx" />
+														</tooltip>
+													</ToggleButton>
+												</children>
+												<padding>
+													<Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+												</padding>
+											</HBox>
+											<HBox fx:id="replaceBox" alignment="CENTER_LEFT">
+												<children>
+													<FontAwesomeIcon iconName="RETWEET" size="2em" />
+													<TextField fx:id="replaceText">
+													</TextField>
+													<Button fx:id="replaceButton" mnemonicParsing="false" onAction="#doReplace" text="%find.replace">
+
+													</Button>
+													<Button fx:id="replaceAllButton" mnemonicParsing="false" onAction="#doReplaceAll" text="%find.replaceall">
+
+													</Button>
+												</children>
+												<padding>
+													<Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+												</padding>
+											</HBox>
+										</children>
+									</VBox>
+									<Button fx:id="closeButton" mnemonicParsing="false" onAction="#doCloseFNRPane" style="-fx-background-color: #ff9999;" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+										<graphic>
+											<FontAwesomeIcon iconName="CLOSE" size="0.6em" />
+										</graphic>
+									</Button>
+								</children>
+							</AnchorPane>
+						</bottom>
+					</HiddenSidesPane>
+				</AnchorPane>
+
+				<TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+					<tabs>
+						<Tab fx:id="TABPreview" closable="false" text="%Perview">
+							<content>
+								<WebView fx:id="WebPreview" prefHeight="200.0" prefWidth="200.0" />
+							</content>
+						</Tab>
+						<Tab fx:id="TABHTMLCode" closable="false" text="%HTMLCode">
+							<content>
+								<WebView fx:id="webHTMLCode" prefHeight="200.0" prefWidth="200.0" />
+							</content>
+						</Tab>
+						<Tab closable="false" text="%ASTCode">
+							<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+									<children>
+										<TextArea fx:id="ASTArea" editable="false" layoutX="95.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+									</children>
+								</AnchorPane>
+							</content>
+						</Tab>
+					</tabs>
+				</TabPane>
+			</items>
+		</SplitPane>
+	</children>
+</AnchorPane>
